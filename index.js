@@ -9,3 +9,13 @@ function createBox() {
     );
     return div;
 }
+
+function createGrid() {
+    const grid = document.querySelector("#grid");
+    for (let i = 0; i < 16; i++) {
+        const box = createBox();
+        grid.appendChild(box);
+    }
+}
+
+createGrid();
