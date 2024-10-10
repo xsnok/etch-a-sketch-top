@@ -1,14 +1,39 @@
-function boxEventListener() {
+function boxColor() {
+    const button = document.querySelector(".change-color-button");
+    button.addEventListener("click", function() {
+        const input = document.querySelector(".change-color-input");
+        if (input.value.length === 6) {
+            return input.value;
+        }
+        else {
+            console.log("ERROR");
+        }
+    });
+    return "000000";
+}
+
+function boxEventListener(color) {
     const boxes = document.querySelectorAll(".box");
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].addEventListener("mouseover", function() {
-            boxes[i].style.backgroundColor = "gray";
+            boxes[i].style.backgroundColor = `#${color}`;
         });
     }
 }
 
 function changeGridSize() {
-
+    const button = document.querySelector(".change-size-button");
+    button.addEventListener("click", function() {
+        const input = document.querySelector(".change-size-input");
+        const grid = document.querySelector(".grid");
+        if (input.value < 100 && input.value > 0) { 
+            while (grid.firstChild) {
+                grid.removeChild(grid.lastChild);
+            }
+            createGrid(input.value);
+        }
+        boxEventListener();
+    });
 }
 
 function createBox(size) {
@@ -34,22 +59,8 @@ function createGrid(size) {
 }
 
 createGrid(16);
-boxEventListener();
+boxEventListener(boxColor());
+changeGridSize();
 
 
-const button = document.querySelector(".change-size-button");
-const input = document.querySelector(".change-size-input")
-const grid = document.querySelector(".grid");
-button.addEventListener("click", function() {
-    console.log("button pressed");
-    console.log(input.value);
-    if (input.value < 100 && input.value > 0) { 
-        while (grid.firstChild) {
-            grid.removeChild(grid.lastChild);
-        }
-        console.log("if statement passed");
-        createGrid(input.value);
-    }
-    boxEventListener();
-});
 
