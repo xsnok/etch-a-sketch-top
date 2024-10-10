@@ -11,13 +11,15 @@ function changeGridSize() {
 
 }
 
-function createBox() {
+function createBox(size) {
     const div = document.createElement("div");
     div.classList.add("box")
     div.setAttribute("style", `
-        width: 20px; 
-        height: 20px;
-        box-sizing: border-box;`
+        display: flex;
+        box-sizing: border-box;
+        width: ${(1/size)*100}%;
+        height: ${(1/size)*100}%;
+        flex-wrap: wrap;`
     );
     return div;
 }
@@ -26,7 +28,7 @@ function createGrid(size) {
     const grid = document.querySelector(".grid");
     grid.style.maxWidth = `calc(20px * ${size})`;
     for (let i = 0; i < size*size; i++) {
-        const box = createBox();
+        const box = createBox(size);
         grid.appendChild(box);
     }
 }
@@ -35,12 +37,11 @@ createGrid(16);
 boxEventListener();
 
 
-const button = document.querySelector(".change-button");
-const input = document.querySelector(".change-input")
+const button = document.querySelector(".change-size-button");
+const input = document.querySelector(".change-size-input")
 const grid = document.querySelector(".grid");
 button.addEventListener("click", function() {
     console.log("button pressed");
-    // TODO: value is blank
     console.log(input.value);
     if (input.value < 100 && input.value > 0) { 
         while (grid.firstChild) {
