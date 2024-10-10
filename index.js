@@ -1,3 +1,12 @@
+function boxEventListener() {
+    const boxes = document.querySelectorAll(".box");
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].addEventListener("mouseover", function() {
+            boxes[i].style.backgroundColor = "gray";
+        });
+    }
+}
+
 function changeGridSize() {
 
 }
@@ -8,10 +17,7 @@ function createBox() {
     div.setAttribute("style", `
         width: 20px; 
         height: 20px;
-        box-sizing: border-box;
-        border-style: solid;
-        border-width: 2px;
-        border-color: black;`
+        box-sizing: border-box;`
     );
     return div;
 }
@@ -26,6 +32,8 @@ function createGrid(size) {
 }
 
 createGrid(16);
+boxEventListener();
+
 
 const button = document.querySelector(".change-button");
 const input = document.querySelector(".change-input")
@@ -41,11 +49,6 @@ button.addEventListener("click", function() {
         console.log("if statement passed");
         createGrid(input.value);
     }
+    boxEventListener();
 });
 
-const boxes = document.querySelectorAll(".box");
-for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener("mouseover", function() {
-        boxes[i].style.backgroundColor = "gray";
-    });
-}
