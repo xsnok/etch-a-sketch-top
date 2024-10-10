@@ -1,24 +1,29 @@
+function boxEventListener(color) {
+    const boxes = document.querySelectorAll(".box");
+    const hex = `#${color}`
+    console.log(hex)
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].addEventListener("mouseover", function() {
+            boxes[i].style.backgroundColor = hex;
+        });
+    }
+}
+
 function boxColor() {
     const button = document.querySelector(".change-color-button");
     button.addEventListener("click", function() {
         const input = document.querySelector(".change-color-input");
         if (input.value.length === 6) {
+            console.log(input.value)
+            boxEventListener(input.value)
             return input.value;
         }
         else {
             console.log("ERROR");
         }
+        boxEventListener(input.value)
     });
     return "000000";
-}
-
-function boxEventListener(color) {
-    const boxes = document.querySelectorAll(".box");
-    for (let i = 0; i < boxes.length; i++) {
-        boxes[i].addEventListener("mouseover", function() {
-            boxes[i].style.backgroundColor = `#${color}`;
-        });
-    }
 }
 
 function changeGridSize() {
